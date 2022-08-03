@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.js">
+    <link rel="stylesheet" href = "main/main.css">
+    <style>
+        
+      
+    </style>
+</head>
+<body>
+<div class="bg">
+    <div class="main">
+        <div class="block">
+            <h1>Chack Norris come back</h1>
+            <h2>Do you want any joke from me?
+                Click submit.
+            </h2>
+            <input  id="submit" type="submit" value="Get Joke">
+            <div class="flex">
+                <img width = "200px" id = "img1" src="" alt="">
+                <img width = "200px" id = "img2" src="" alt="">
+            </div>
+            
+            <h3 id = "date"></h3>
+            <h4 id ="cite"></h4>
+            
+        </div>
+    </div>
+</div>
+    
+</body>
+<script>
+    function main() {
+        // Перменные
+        var [img1,img2] = [document.getElementById("img1"),document.getElementById("img2")];
+        var cite = document.getElementById("cite");
+        var joke = document.getElementById("date");
+        let button = document.getElementById("submit");
+        // EVENT Обработка
+        button.addEventListener("click",()=>{
+            fetch("https://api.chucknorris.io/jokes/random").
+            then((res)=>{
+                return res.json();
+            }).then((data)=> {
+
+                let d = data;
+                let icon = d.icon_url;
+                img1.src = "img/chuck.png";
+                img2.src = "img/chuck.png";
+                console.log(data);
+                cite.innerText = `${d.value}`;
+                joke.innertext = `Joke created at ${d.created_at}`;
+            })
+})
+    }
+  main();  
+
+</script>
+</html>
